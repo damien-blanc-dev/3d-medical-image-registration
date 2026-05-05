@@ -242,10 +242,3 @@ The deep learning branch of this project reuses U-Net-style encoder-decoders fro
 
 **Damien Blanc** — PhD in AI applied to biomedical imaging  
 Expertise: 3D segmentation (U-Net, 3D CNN), CT/MRI analysis, medical image processing  
-[LinkedIn](#) · [GitHub](#)
-
----
-
-## License
-
-MIT License — see [LICENSE](LICENSE) for details.
