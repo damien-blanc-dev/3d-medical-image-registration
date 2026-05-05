@@ -1,0 +1,38 @@
+# Configuration for classical rigid registration (SimpleITK)
+
+registration:
+  # Transform type: "euler3d" | "affine"
+  transform: euler3d
+
+  # Similarity metric: "mattes_mi" | "mean_squares" | "correlation"
+  metric: mattes_mi
+  metric_params:
+    number_of_histogram_bins: 50
+    sampling_strategy: RANDOM          # RANDOM | REGULAR | NONE
+    sampling_percentage: 0.01          # 1% of voxels sampled per iteration
+
+  # Optimizer
+  optimizer: gradient_descent_line_search
+  optimizer_params:
+    learning_rate: 1.0
+    min_step: 0.001
+    number_of_iterations: 200
+    convergence_minimum_value: 1.0e-6
+    convergence_window_size: 10
+    estimate_learning_rate: once      # once | each_iteration | never
+
+  # Multi-resolution pyramid
+  shrink_factors: [4, 2, 1]           # Image shrink at each level
+  smoothing_sigmas: [2.0, 1.0, 0.0]  # Gaussian sigma (mm) at each level
+
+preprocessing:
+  # Resample both volumes to this isotropic spacing (mm)
+  target_spacing: [1.0, 1.0, 1.0]
+  # Intensity normalization: "zscore" | "minmax" | "none"
+  normalization: zscore
+
+output:
+  save_transform: true
+  save_registered: true
+  save_checkerboard: true
+  checkerboard_pattern_size: 5       # Checkerboard square size (voxels)

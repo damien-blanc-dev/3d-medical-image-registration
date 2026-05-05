@@ -1,0 +1,32 @@
+# Configuration for deep learning registration (VoxelMorph-inspired)
+
+model:
+  architecture: voxelmorph_unet
+  # Encoder channel progression
+  enc_features: [16, 32, 32, 32]
+  # Decoder channel progression
+  dec_features: [32, 32, 32, 32, 16, 16]
+  # Diffeomorphic integration steps (0 = disabled)
+  int_steps: 7
+
+training:
+  # Unsupervised similarity loss: "ncc" | "mse"
+  similarity_loss: ncc
+  ncc_window_size: 9
+  # Regularization weight (lambda)
+  lambda_reg: 0.01
+  # Optimizer
+  optimizer: adam
+  learning_rate: 1.0e-4
+  epochs: 500
+  batch_size: 1
+  # Patch-based training (set to null for full volume)
+  patch_size: [128, 128, 128]
+
+preprocessing:
+  target_spacing: [1.0, 1.0, 1.0]
+  normalization: zscore
+
+output:
+  checkpoint_dir: checkpoints/
+  save_every_n_epochs: 50
